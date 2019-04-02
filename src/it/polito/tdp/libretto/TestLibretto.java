@@ -26,6 +26,20 @@ public class TestLibretto {
 		System.out.println(a1);
 		System.out.println(a3);
 
+		//verifichiamo se esistono già i voti
+		
+		Voto giusto = new Voto(25, "Geometria", LocalDate.now());
+		Voto sbagliato = new Voto(18, "Geometria", LocalDate.now());
+		Voto mancante = new Voto(30, "Analisi III", LocalDate.now());
+
+		System.out.format("Il voto %s è %s\n", giusto.toString(), libr.esisteVoto(giusto));
+		System.out.format("Il voto %s è %s\n", sbagliato.toString(), libr.esisteVoto(sbagliato));
+		System.out.format("Il voto %s è %s\n", mancante.toString(), libr.esisteVoto(mancante));
+
+		System.out.format("Il voto %s è in conflitto: %s\n", giusto.toString(), libr.conflittoVoto(giusto));
+		System.out.format("Il voto %s è in conflitto: %s\n", sbagliato.toString(), libr.conflittoVoto(sbagliato));
+		System.out.format("Il voto %s è in conflitto: %s\n", mancante.toString(), libr.conflittoVoto(mancante));
+
 	}
 
 }

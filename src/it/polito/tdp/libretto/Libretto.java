@@ -38,13 +38,43 @@ public class Libretto {
 	 * Ricerca un {@link Voto} relativo al corso di cui è specificato il nome
 	 * 
 	 * @param nomeEsame nome del corso da ricercare
-	 * @return il {@link Voto} corrispondente, oppure null se non esistente
+	 * @return il {@link Voto} corrispondente, oppure {@code null} se non esistente
 	 */
 	public Voto cercaEsame(String nomeEsame) {
-		for(Voto v: this.voti) {
-			if (v.getCorso().equals(nomeEsame))
-				return v;
-		}
-		return null;
+		Voto voto= new Voto(0, nomeEsame, null);
+		int pos = this.voti.indexOf(voto);
+		if (pos==-1)
+			return null;
+		else return this.voti.get(pos);
+	}
+	
+	/**
+	 * Dato un {@link Voto} determina se esiste già un voto con uguale
+	 * corso e punteggio
+	 * 
+	 * @param v voto da trovare
+	 * @return {@code true}, se ha trovato un corso e punteggio uguali,
+	 * {@code false} se non ha trovato il corso, oppure l'ha trovato con voto diverso
+	 */
+	boolean esisteVoto(Voto v) {
+		int pos = this.voti.indexOf(v);
+		if (pos==-1)
+			return false;
+		else return this.voti.get(pos).getPunti()==v.getPunti();
+	}
+
+	/**
+	 * Dato un {@link Voto} {@code v} dice se è in conflitto con i voti esistenti
+	 * Se il voto non esiste non c'è conflitto, se esiste ed ha voto diverso c'è conflitto
+	 * 
+	 * @param v voto da trovare
+	 * @return {@code true}, se ha trovato un conflitto,
+	 * {@code false} se non ha trovato conflitto, quindi il voto non esiste oppure esiste con lo stesso punteggio
+	 */
+	boolean conflittoVoto(Voto v) {
+		int pos = this.voti.indexOf(v);
+		if (pos==-1)
+			return false;
+		else return this.voti.get(pos).getPunti()!=v.getPunti();
 	}
 }
