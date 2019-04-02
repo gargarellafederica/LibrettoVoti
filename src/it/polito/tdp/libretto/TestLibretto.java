@@ -43,8 +43,19 @@ public class TestLibretto {
 		System.out.println(libr.add(giusto));
 		System.out.println(libr.add(sbagliato));
 		System.out.println(libr.add(mancante));
-		//stampo tutta la stringa
+		
+		//stampo tutto il libretto
+		System.out.println("Il libretto è: ");
 		System.out.println(libr.toString());
+		
+		//Creo nuovo libretto e lo stampo
+		Libretto migliore = libr.LibrettoMigliorato();
+		System.out.println("Il libretto migliorato è: ");
+		System.out.println(migliore.toString());
+		
+		System.out.println("Il libretto dopo la rimozione dei voti è: ");
+		libr.rimuoviVoto(24);
+		System.out.println(libr.toString());		
 	}
 
 }

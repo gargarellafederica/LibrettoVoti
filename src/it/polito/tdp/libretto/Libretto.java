@@ -20,7 +20,7 @@ public class Libretto {
 	public boolean add(Voto v) {
 		//aggiungo se non esiste già o se non genera conflitto
 		if(!this.esisteVoto(v) && !this.conflittoVoto(v)) {
-			voti.add(v);
+			this.voti.add(v);
 			return true;
 		}
 		else return false;
@@ -36,7 +36,7 @@ public class Libretto {
 	public List<Voto> cercaVoti(int voto) {
 		
 		List<Voto> result= new ArrayList<Voto>();
-		for(Voto v:voti)
+		for(Voto v:this.voti)
 			if(v.getPunti()==voto)
 				result.add(v);
 		return result;
@@ -89,5 +89,26 @@ public class Libretto {
 		return this.voti.toString();
 	}
 	
+	public Libretto LibrettoMigliorato() {
+		Libretto nuovoLib= new Libretto();
+		for(Voto v: this.voti) {
+			nuovoLib.add(v.clone());
+		}
+		for(Voto v: nuovoLib.voti) {
+			if(v.getPunti()>=18 && v.getPunti()<24)
+				v.setPunti(v.getPunti()+1);
+			else if(v.getPunti()>=24 && v.getPunti()<29)
+				v.setPunti(v.getPunti()+2);
+		}
+		return nuovoLib;
+	}
 	
+	//non devo ritornare il libretto perchè lo sto semplicemente modificando non ne sto creando uno nuovo
+	public void rimuoviVoto(int voto) {
+		List<Voto> cancellare= new ArrayList<>();
+		for (Voto v: this.voti)
+			if (v.getPunti()<voto)
+				cancellare.add(v);
+		this.voti.removeAll(cancellare);
+	}
 }
