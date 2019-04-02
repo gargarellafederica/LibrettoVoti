@@ -14,9 +14,17 @@ public class Libretto {
 	 * Aggiunge un nuovo voto al libretto
 	 * 
 	 * @param v il {@link Voto} da aggiungere
+	 * @return {@code true} se ha aggiunto il voto, 
+	 * {@code false} altrimenti
 	 */
-	public void add(Voto v) {
-		voti.add(v);
+	public boolean add(Voto v) {
+		//aggiungo se non esiste già o se non genera conflitto
+		if(!this.esisteVoto(v) && !this.conflittoVoto(v)) {
+			voti.add(v);
+			return true;
+		}
+		else return false;
+		
 	}
 	
 	//ritorno una lista e non la stampa della stringa per rendere il programma in modo più generale possibile 
@@ -77,4 +85,10 @@ public class Libretto {
 			return false;
 		else return this.voti.get(pos).getPunti()!=v.getPunti();
 	}
+
+	public String toString() {
+		return this.voti.toString();
+	}
+	
+	
 }
