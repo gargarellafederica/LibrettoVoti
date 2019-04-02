@@ -24,7 +24,6 @@ public class Libretto {
 			return true;
 		}
 		else return false;
-		
 	}
 	
 	//ritorno una lista e non la stampa della stringa per rendere il programma in modo più generale possibile 
